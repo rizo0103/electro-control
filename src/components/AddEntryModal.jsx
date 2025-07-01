@@ -6,6 +6,7 @@ export default function AddEntryModal({ onClose, onSave, lastMeter }) {
     const [meter, setMeter] = useState(0);
     const [receiptNumber, setReceiptNumber] = useState("");
     const [pricePerKWh, setPricePerKWh] = useState(localStorage.getItem("electricity-price") || 3.21); // Default price if not provided
+    const [sum, setSum] = useState(0);
 //   const [receiptImage, setReceiptImage] = useState(null);
 
 //   const handleFileChange = (e) => {
@@ -34,22 +35,26 @@ export default function AddEntryModal({ onClose, onSave, lastMeter }) {
     return (
         <div className="modal-overlay">
             <div className="modal-box">
-                <h2>Добавить новую запись</h2>
+                <h2> Добавить новую запись </h2>
                 <div>
-                    <label>Дата: </label>
+                    <label> Дата: </label>
                     <input type="date" value={date} onChange={e => setDate(e.target.value)} />
                 </div>
                 <div>
-                    <label>Показатель счётчика: </label>
+                    <label> Показатель счётчика: </label>
                     <input type="number" value={meter} onChange={e => setMeter(parseInt(e.target.value))} />
                 </div>
                 <div>
-                    <label>Номер чека: </label>
-                    <input type="text" value={receiptNumber} onChange={e => setReceiptNumber(e.target.value)} />
+                    <label> Цена за кВт·ч: </label>
+                    <input type="number" value={pricePerKWh} onChange={(e) => setPricePerKWh(parseFloat(e.target.value))} step="0.01" />
                 </div>
                 <div>
-                    <label> Цена за кВт·ч </label>
-                    <input type="number" value={pricePerKWh} onChange={(e) => setPricePerKWh(parseFloat(e.target.value))} step="0.01" />
+                    <label> Оплаченная сумма: </label>
+                    <input type="number" value={sum} onChange={(e) => setSum(e.target.value)} />
+                </div>
+                <div>
+                    <label> Номер чека: </label>
+                    <input type="text" value={receiptNumber} onChange={e => setReceiptNumber(e.target.value)} />
                 </div>
                 {/* <div>
                 <label>Receipt photo: </label>
