@@ -27,7 +27,7 @@ export default function AddEntryModal({ onClose, onSave, lastMeter }) {
             //   receiptImage,
             receiptNumber,
             payed,
-            pricePerKWh: parseFloat(pricePerKWh.toFixed(2)) // Ensure price is a number with 2 decimal places,
+            pricePerKWh // Ensure price is a number with 2 decimal places,
         });
 
         localStorage.setItem("electricity-price", pricePerKWh); // Save price to localStorage

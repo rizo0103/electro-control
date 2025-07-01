@@ -9,8 +9,10 @@ export default function MonthlyTable({ entries, onDelete }) {
                     <th>Дата</th>
                     <th>Счётчик</th>
                     <th>Сумма</th>
+                    <th>Оплаченная сумма</th>
+                    <th>+/-</th>
                     {/* <th>Чек</th> */}
-                    <th># Чека</th>
+                    <th>Номер чека</th>
                     <th></th>
                 </tr>
             </thead>
@@ -20,14 +22,12 @@ export default function MonthlyTable({ entries, onDelete }) {
                         <td>{e.date}</td>
                         <td>{e.meter}</td>
                         <td>{e.sum.toFixed(2)} c</td>
+                        <td>{e.payed || "N/A"}</td>
+                        <td> {+e.payed - e.sum.toFixed(2) || "N/A"} </td>
                         {/* <td style={{ textAlign: "center" }}>{e.receiptImage ? "✅" : "❌"}</td> */}
                         <td>{e.receiptNumber}</td>
                         <td>
-                            <button
-                                className="delete-btn"
-                                onClick={() => onDelete(i)}
-                                title="Удалить"
-                            >
+                            <button className="delete-btn" onClick={() => onDelete(i)} title="Удалить">
                                 🗑
                             </button>
                         </td>
