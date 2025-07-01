@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./AddEntryModal.css"; // Assuming you have some styles in this file
 
-export default function AddEntryModal({ onClose, onSave, lastMeter, pricePerKWh }) {
+export default function AddEntryModal({ onClose, onSave, lastMeter }) {
     const [date, setDate] = useState(new Date().toISOString().slice(0,10));
     const [meter, setMeter] = useState(0);
     const [receiptNumber, setReceiptNumber] = useState("");
+    const [pricePerKWh, setPricePerKWh] = useState(localStorage.getItem("electricity-price") || 3.21); // Default price if not provided
 //   const [receiptImage, setReceiptImage] = useState(null);
 
 //   const handleFileChange = (e) => {
@@ -23,8 +24,11 @@ export default function AddEntryModal({ onClose, onSave, lastMeter, pricePerKWh 
             meter,
             sum,
             //   receiptImage,
-            receiptNumber
+            receiptNumber,
+            pricePerKWh: parseFloat(pricePerKWh.toFixed(2)) // Ensure price is a number with 2 decimal places,
         });
+
+        localStorage.setItem("electricity-price", pricePerKWh); // Save price to localStorage
     };
 
     return (
@@ -42,6 +46,10 @@ export default function AddEntryModal({ onClose, onSave, lastMeter, pricePerKWh 
                 <div>
                     <label>Receipt #: </label>
                     <input type="text" value={receiptNumber} onChange={e => setReceiptNumber(e.target.value)} />
+                </div>
+                <div>
+                    <label> Price per KWh </label>
+                    <input type="number" value={pricePerKWh} onChange={(e) => setPricePerKWh(parseFloat(e.target.value))} step="0.01" />
                 </div>
                 {/* <div>
                 <label>Receipt photo: </label>

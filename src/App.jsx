@@ -6,7 +6,6 @@ import "./App.css";
 
 export default function App() {
     const [entries, setEntries] = useState([]);
-    const [pricePerKWh, setPricePerKWh] = useState(3.21);
     const [showModal, setShowModal] = useState(false);
     const [deleteIndex, setDeleteIndex] = useState(null);
 
@@ -16,18 +15,12 @@ export default function App() {
         if (savedEntries) {
             setEntries(JSON.parse(savedEntries));
         }
-
-        const savedPrice = localStorage.getItem("electricity-price");
-        if (savedPrice) {
-            setPricePerKWh(parseFloat(savedPrice));
-        }
     }, []);
 
     const addEntry = (entry) => {
         setEntries((prev) => {
             const updated = [...prev, entry];
             localStorage.setItem("electricity-entries", JSON.stringify(updated));
-            localStorage.setItem("electricity-price", pricePerKWh);
 
             return updated;
         });
@@ -37,7 +30,6 @@ export default function App() {
         setEntries((prev) => {
             const updated = prev.filter((_, i) => i !== deleteIndex);
             localStorage.setItem("electricity-entries", JSON.stringify(updated));
-            localStorage.setItem("electricity-price", pricePerKWh);
             return updated;
         });
         
@@ -57,10 +49,6 @@ export default function App() {
     return (
         <div className="app-container">
             <h1>💡 Electricity Control</h1>
-            <div className="price-input">
-                <label>Цена за кВт·ч:</label>
-                <input type="number" value={pricePerKWh} onChange={(e) => setPricePerKWh(parseFloat(e.target.value))} step="0.01" /> c
-            </div>
 
             <MonthlyTable entries={entries} onDelete={handleDelete} />
 
@@ -76,7 +64,6 @@ export default function App() {
                         setShowModal(false);
                     }}
                     lastMeter={entries.length ? entries[entries.length - 1].meter : 0}
-                    pricePerKWh={pricePerKWh}
                 />
             )}
 
