@@ -1,47 +1,50 @@
 .table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #111827;
-  border-radius: 1rem;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-  font-size: 0.9rem;
+    width: 100%;
+    border-collapse: collapse;
+    background: #111827;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    font-size: 0.9rem;
 }
 
-.table th, .table td {
-  padding: 0.9rem;
-  text-align: center;
+.table th,
+.table td {
+    padding: 0.9rem;
+    text-align: center;
 }
 
 .table thead {
-  background: #374151;
+    background: #374151;
 }
 
 .table tbody tr {
-  border-top: 1px solid #374151;
+    border-top: 1px solid #374151;
 }
 
 .table tbody tr:hover {
-  background: rgba(255, 255, 255, 0.05);
-  transition: background 0.2s;
+    background: rgba(255, 255, 255, 0.05);
+    transition: background 0.2s;
 }
 
 @media (max-width: 480px) {
-  .table th, .table td {
-    padding: 0.6rem;
-    font-size: 0.8rem;
-  }
+
+    .table th,
+    .table td {
+        padding: 0.6rem;
+        font-size: 0.8rem;
+    }
 }
 
 .delete-btn {
-  background: none;
-  border: none;
-  color: #f87171;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: color 0.2s;
+    background: none;
+    border: none;
+    color: #f87171;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.2s;
 }
 
 .delete-btn:hover {
-  color: #ef4444;
+    color: #ef4444;
 }
