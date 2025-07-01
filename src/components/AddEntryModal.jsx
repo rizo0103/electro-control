@@ -6,7 +6,7 @@ export default function AddEntryModal({ onClose, onSave, lastMeter }) {
     const [meter, setMeter] = useState(0);
     const [receiptNumber, setReceiptNumber] = useState("");
     const [pricePerKWh, setPricePerKWh] = useState(localStorage.getItem("electricity-price") || 3.21); // Default price if not provided
-    const [sum, setSum] = useState(0);
+    const [payed, setPayed] = useState(0);
 //   const [receiptImage, setReceiptImage] = useState(null);
 
 //   const handleFileChange = (e) => {
@@ -26,6 +26,7 @@ export default function AddEntryModal({ onClose, onSave, lastMeter }) {
             sum,
             //   receiptImage,
             receiptNumber,
+            payed,
             pricePerKWh: parseFloat(pricePerKWh.toFixed(2)) // Ensure price is a number with 2 decimal places,
         });
 
@@ -50,7 +51,7 @@ export default function AddEntryModal({ onClose, onSave, lastMeter }) {
                 </div>
                 <div>
                     <label> Оплаченная сумма: </label>
-                    <input type="number" value={sum} onChange={(e) => setSum(e.target.value)} />
+                    <input type="number" value={payed} onChange={(e) => setPayed(e.target.value)} />
                 </div>
                 <div>
                     <label> Номер чека: </label>
