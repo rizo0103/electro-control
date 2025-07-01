@@ -34,21 +34,21 @@ export default function AddEntryModal({ onClose, onSave, lastMeter }) {
     return (
         <div className="modal-overlay">
             <div className="modal-box">
-                <h2>Add New Entry</h2>
+                <h2>Добавить новую запись</h2>
                 <div>
-                    <label>Date: </label>
+                    <label>Дата: </label>
                     <input type="date" value={date} onChange={e => setDate(e.target.value)} />
                 </div>
                 <div>
-                    <label>Meter: </label>
+                    <label>Показатель счётчика: </label>
                     <input type="number" value={meter} onChange={e => setMeter(parseInt(e.target.value))} />
                 </div>
                 <div>
-                    <label>Receipt #: </label>
+                    <label>Номер чека: </label>
                     <input type="text" value={receiptNumber} onChange={e => setReceiptNumber(e.target.value)} />
                 </div>
                 <div>
-                    <label> Price per KWh </label>
+                    <label> Цена за кВт·ч </label>
                     <input type="number" value={pricePerKWh} onChange={(e) => setPricePerKWh(parseFloat(e.target.value))} step="0.01" />
                 </div>
                 {/* <div>
@@ -56,10 +56,10 @@ export default function AddEntryModal({ onClose, onSave, lastMeter }) {
                 <input type="file" accept="image/*" onChange={handleFileChange} />
                 </div> */}
                 <button className="save-btn" onClick={handleSave}>
-                    Save
+                    Сохранить
                 </button>
                 <button className="cancel-btn" onClick={onClose}>
-                    Cancel
+                    Отмена
                 </button>
             </div>
         </div>
