@@ -61,12 +61,14 @@ export default function AddEntryModal({ onClose, onSave, lastMeter }) {
                 <label>Receipt photo: </label>
                 <input type="file" accept="image/*" onChange={handleFileChange} />
                 </div> */}
-                <button className="save-btn" onClick={handleSave}>
-                    Сохранить
-                </button>
-                <button className="cancel-btn" onClick={onClose}>
-                    Отмена
-                </button>
+                <div className="btns">
+                    <button className="save-btn" onClick={handleSave}>
+                        Сохранить
+                    </button>
+                    <button className="cancel-btn" onClick={onClose}>
+                        Отмена
+                    </button>
+                </div>
             </div>
         </div>
     );

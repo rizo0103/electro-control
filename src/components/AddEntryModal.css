@@ -1,66 +1,84 @@
 .modal-overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
 }
 
 .modal-box {
-  background: #f9fafb;
-  color: #111827;
-  border-radius: 1.5rem;
-  padding: 2rem;
-  width: 90%;
-  max-width: 420px;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
-  animation: scaleIn 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+    color: #f9fafb;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    width: 90%;
+    max-width: 420px;
+    animation: scaleIn 0.3s ease;
 }
 
 @keyframes scaleIn {
-  from { transform: scale(0.9); opacity: 0; }
-  to   { transform: scale(1); opacity: 1; }
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .modal-box input[type="text"],
 .modal-box input[type="number"],
 .modal-box input[type="date"],
 .modal-box input[type="file"] {
-  width: 100%;
-  padding: 0.75rem;
-  margin-bottom: 1.2rem;
-  border-radius: 0.9rem;
-  border: 1px solid #d1d5db;
-  font-size: 1rem;
+    width: 95%;
+    padding: 0.75rem;
+    margin-bottom: 1.2rem;
+    border-radius: 0.9rem;
+    border: 1px solid #d1d5db;
+    font-size: 1rem;
 }
 
 .modal-box button {
-  width: 48%;
-  padding: 0.7rem;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 0.9rem;
-  border: none;
-  cursor: pointer;
+    width: 48%;
+    padding: 0.7rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 0.9rem;
+    border: none;
+    cursor: pointer;
 }
 
 .modal-box .save-btn {
-  background: #4ade80;
-  color: #111827;
+    background: #4ade80;
+    color: #111827;
 }
 
 .modal-box .save-btn:hover {
-  background: #22c55e;
+    background: #22c55e;
 }
 
 .modal-box .cancel-btn {
-  background: #f87171;
-  color: #111827;
+    background: #f87171;
+    color: #111827;
 }
 
 .modal-box .cancel-btn:hover {
-  background: #ef4444;
+    background: #ef4444;
+}
+
+.modal-box .btns {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
 }
