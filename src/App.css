@@ -6,9 +6,9 @@ body {
 }
 
 .app-container {
-    width: 50%;
+    width: 1000px;
     margin: 0 auto;
-    /* padding: 1rem; */
+    padding: 1rem;
     place-items: center;
 }
 
@@ -28,7 +28,7 @@ h1 {
 
 .price-input input {
     width: 80px;
-    padding: 0.5rem 0.7rem;
+    /* padding: 0.5rem 0.7rem; */
     border-radius: 0.75rem;
     border: none;
     outline: none;
