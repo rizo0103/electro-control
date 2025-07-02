@@ -25,7 +25,7 @@ export default function Sidebar({ user, onLogin, onLogout, isOpen, onClose }) {
                     <h2 className="sidebar-title">Меню</h2>
 
                     {!user ? (
-                        <button className="sidebar-btn" onClick={() => { onLogin(); onClose(); }}>
+                        <button className="sidebar-btn" onClick={onLogin}>
                             🔑 Войти
                         </button>
                     ) : (

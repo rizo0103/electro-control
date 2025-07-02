@@ -17,6 +17,9 @@ export default function AuthCard() {
                         Нет аккаунта?{" "}
                         <span onClick={() => setIsFlipped(true)}>Зарегистрироваться</span>
                     </p>
+                    <p>
+                        <span onClick={() => location.reload()}> Обратно в главную страницу </span>
+                    </p>
                 </div>
 
                 {/* Back — регистрация */}
@@ -30,6 +33,9 @@ export default function AuthCard() {
                     <p>
                         Уже есть аккаунт?{" "}
                         <span onClick={() => setIsFlipped(false)}>Войти</span>
+                    </p>
+                    <p>
+                        <span onClick={() => location.reload()}> Обратно в главную страницу </span>
                     </p>
                 </div>
             </div>
