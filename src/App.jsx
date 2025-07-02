@@ -4,6 +4,7 @@ import AddEntryModal from "./components/resources/AddEntryModal";
 import DeleteConfirmModal from "./components/resources/DeleteConfirmModal.";
 import "./App.css";
 import Sidebar from "./components/resources/Sidebar";
+import AuthCard from "./components/auth/AuthCard";
 
 export default function App() {
     const [entries, setEntries] = useState([]);
@@ -83,6 +84,7 @@ export default function App() {
                     />
                 )}
             </main>
+            {/* <AuthCard /> */}
         </div>
     );
 }
