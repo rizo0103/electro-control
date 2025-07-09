@@ -30,11 +30,11 @@ export default function Sidebar({ user, onLogin, onLogout, isOpen, onClose }) {
                         </button>
                     ) : (
                         <div className="sidebar-user">
-                            <img
+                            {user.avatarUrl && <img
                                 src={user.avatarUrl || "https://via.placeholder.com/50"}
                                 alt="avatar"
                                 className="sidebar-avatar"
-                            />
+                            />}
                             <p className="sidebar-username">{user.username}</p>
                             <button className="sidebar-btn" onClick={() => alert("Профиль скоро :)")}>
                                 👤 Профиль
