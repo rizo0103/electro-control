@@ -40,6 +40,11 @@ export default function Main() {
 
     // ✅ Добавление записи
     const addEntry = async (entry) => {
+        if (!token) {
+            alert("Нет токена авторизации. Зарегистрируйтесь или войдите в систему.");
+            return;
+        }
+
         try {
             const res = await fetch(`${apiUrl}/add-record`, {
                 method: "POST",

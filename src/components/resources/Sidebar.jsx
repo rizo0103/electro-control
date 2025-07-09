@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import "./Sidebar.css";
 
-export default function Sidebar({ user, onLogin, onLogout, isOpen, onClose }) {
+export default function Sidebar({ user, onLogin, isOpen, onClose }) {
     const drawerRef = useRef();
 
     useEffect(() => {
@@ -17,6 +17,11 @@ export default function Sidebar({ user, onLogin, onLogout, isOpen, onClose }) {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [isOpen, onClose]);    
+
+    const logout = () => {
+        localStorage.removeItem("token");
+        location.reload();
+    }
   
     return (
         <>
@@ -39,7 +44,7 @@ export default function Sidebar({ user, onLogin, onLogout, isOpen, onClose }) {
                             <button className="sidebar-btn" onClick={() => alert("Профиль скоро :)")}>
                                 👤 Профиль
                             </button>
-                            <button className="sidebar-btn logout" onClick={() => { onLogout(); onClose(); }}>
+                            <button className="sidebar-btn logout" onClick={logout}>
                                 🚪 Выйти
                             </button>
                         </div>
