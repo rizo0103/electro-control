@@ -1,38 +1,84 @@
 import React, { useState, useEffect } from "react";
-import Sidebar from "../resources/Sidebar";
 import MonthlyTable from "./MonthlyTable";
 import AddEntryModal from "../resources/AddEntryModal";
-import DeleteConfirmModal from '../resources/DeleteConfirmModal.';
+import DeleteConfirmModal from "../resources/DeleteConfirmModal.";
 
 export default function Main() {
     const [entries, setEntries] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [deleteIndex, setDeleteIndex] = useState(null);
+    const apiUrl = import.meta.env.VITE_API_URL;
+    const token = localStorage.getItem("token");
 
-    // ✅ загрузка из localStorage при старте
+    // ✅ Загрузка данных с сервера
     useEffect(() => {
-        const savedEntries = localStorage.getItem("electricity-entries");
-        if (savedEntries) {
-            setEntries(JSON.parse(savedEntries));
+        const fetchData = async () => {
+            try {
+                const res = await fetch(`${apiUrl}/get-records`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`,
+                    }
+                });
+
+                if (res.ok) {
+                    const data = await res.json();
+                    setEntries(data);
+                } else {
+                    console.error("Не удалось загрузить записи");
+                }
+            } catch (err) {
+                console.error("Ошибка сети", err);
+            }
+        };
+
+        if (token) {
+            fetchData();
         }
-    }, []);
+    }, [token, apiUrl]);
 
-    const addEntry = (entry) => {
-        setEntries((prev) => {
-            const updated = [...prev, entry];
-            localStorage.setItem("electricity-entries", JSON.stringify(updated));
+    // ✅ Добавление записи
+    const addEntry = async (entry) => {
+        try {
+            const res = await fetch(`${apiUrl}/add-record`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: JSON.stringify(entry)
+            });
 
-            return updated;
-        });
+            if (res.ok) {
+                setEntries((prev) => [...prev, entry]);
+            } else {
+                console.error("Ошибка при добавлении записи");
+            }
+        } catch (err) {
+            console.error("Ошибка сети", err);
+        }
     };
 
-    const confirmDelete = () => {
-        setEntries((prev) => {
-            const updated = prev.filter((_, i) => i !== deleteIndex);
-            localStorage.setItem("electricity-entries", JSON.stringify(updated));
-            return updated;
-        });
-        
+    // ✅ Удаление локально — сервер пока не трогаем
+    const confirmDelete = async () => {
+        try {
+            const res = await fetch(`${apiUrl}/delete-record/${deleteIndex}`, {
+                method: "DELETE",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+
+            if (res.ok) {
+                setEntries(prev => prev.filter((_, i) => i !== deleteIndex));
+            } else {
+                console.error("Ошибка при удалении");
+            }
+        } catch (err) {
+            console.error("Ошибка сети", err);
+        }
+
         setDeleteIndex(null);
     };
 
@@ -40,11 +86,6 @@ export default function Main() {
     const handleDelete = (index) => {
         setDeleteIndex(index);
     };
-
-//   const confirmDelete = () => {
-//     setEntries(entries.filter((_, i) => i !== deleteIndex));
-//     setDeleteIndex(null);
-//   };
 
     return (
         <main className="app-container">
