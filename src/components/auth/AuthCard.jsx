@@ -82,6 +82,24 @@ export default function AuthCard() {
             // Here you would typically send the login data to your server
             login(username, password);
         }
+
+        const localEntries = JSON.parse(localStorage.getItem("electricity-entries") || "[]");
+        const apiUrl = import.meta.env.VITE_API_URL;
+        const token = localStorage.getItem("token");
+
+        if (localEntries.length > 0) {
+            await fetch(`${apiUrl}/import-records`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify({ records: localEntries })
+            });
+
+            // после успешного переноса можно очистить localStorage
+            localStorage.removeItem("electricity-entries");
+        }
     }
 
     return (
